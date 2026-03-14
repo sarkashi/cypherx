@@ -3,8 +3,10 @@
 </p>
 
 <h1 align="center">CypherX</h1>
-<p align="center"><b>Cyber Intelligence Suite</b></p>
-<p align="center">OSINT · Recon · Scanner · Vuln · Forensics · Bruteforce · Monitor</p>
+
+<p align="center">
+  Cyber Intelligence Suite
+</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/version-1.0.0-blue?style=flat-square"/>
@@ -12,38 +14,32 @@
   <img src="https://img.shields.io/badge/platform-Kali%20%7C%20Ubuntu%20%7C%20Arch%20%7C%20Windows-cyan?style=flat-square"/>
   <img src="https://img.shields.io/badge/license-MIT-orange?style=flat-square"/>
   <img src="https://img.shields.io/badge/api%20keys-none-brightgreen?style=flat-square"/>
-  <img src="https://img.shields.io/badge/malware-free-brightgreen?style=flat-square"/>
 </p>
 
 ---
 
-## What is CypherX?
+CypherX is an open source cyber intelligence suite for security professionals, penetration testers, and researchers.
+It brings OSINT, port scanning, vulnerability detection, forensics, bruteforce, traffic monitoring, and reporting into one tool.
 
-CypherX is an open source cyber intelligence suite built for security professionals, penetration testers, and researchers. It combines OSINT, reconnaissance, port scanning, vulnerability detection, log forensics, bruteforce testing, live traffic monitoring, and report generation into a single command-line tool.
-
-- No API keys required — everything is free
-- Works on Kali Linux, Ubuntu, Arch Linux, and Windows
-- All results saved as JSON automatically
-- Professional minimal terminal output
-- Fast multi-threaded engine
+No API keys. No registration. Free.
 
 ---
 
 ## Modules
 
-| Module | Short Flag | Description |
-|--------|-----------|-------------|
+| Module | Flag | Description |
+|--------|------|-------------|
 | osint | -os | Username / email / phone / domain / IP intelligence |
 | recon | -r | Full target reconnaissance |
-| scan | -sc | Fast deep port scan + service detection |
+| scan | -sc | Fast port scan + service detection |
 | network | -n | Host discovery + OS fingerprint |
-| monitor | -m | Live terminal traffic monitor |
-| brute | -b | Bruteforce SSH / FTP / HTTP / MySQL / RDP / SMTP |
-| vuln | -v | Deep vulnerability detection with CVE database |
-| audit | -a | Full system security audit |
+| monitor | -m | Live traffic monitor |
+| brute | -b | Bruteforce SSH / FTP / HTTP / RDP / MySQL / SMTP |
+| vuln | -v | Vulnerability detection with CVE + CVSS scores |
+| audit | -a | System security audit |
 | forensics | -f | Log analysis + IOC extraction |
-| hardening | -h2 | System hardening guide |
-| filecheck | -fc | Deep file safety analysis |
+| hardening | -h2 | System hardening recommendations |
+| filecheck | -fc | File safety analysis |
 | report | -rp | HTML / PDF / TXT report generator |
 | update | -u | Check and apply updates |
 
@@ -53,170 +49,334 @@ CypherX is an open source cyber intelligence suite built for security profession
 
 ### Kali Linux / Ubuntu / Debian
 
-**Method 1 — Git (Recommended):**
+**Option 1 — Git**
+
 ```bash
 git clone https://github.com/sarkashi/cypherx.git
 cd cypherx
 bash install.sh
-Method 2 — ZIP Download:
-Go to https://github.com/sarkashi/cypherx
-Click green Code button → Download ZIP
-Extract the ZIP file
-Open terminal in the extracted folder:
+```
+
+**Option 2 — ZIP**
+
+1. Go to [github.com/sarkashi/cypherx](https://github.com/sarkashi/cypherx)
+2. Click the green **Code** button
+3. Click **Download ZIP**
+4. Extract the ZIP
+5. Open terminal inside the folder
+
+```bash
 cd cypherx-main
 bash install.sh
-After install, use from anywhere:
+```
+
+After installation, run from anywhere:
+
+```bash
 cypherx --help
-Arch Linux
+```
+
+---
+
+### Arch Linux
+
+```bash
 git clone https://github.com/sarkashi/cypherx.git
 cd cypherx
 pip install -r requirements.txt
 bash install.sh
-Windows
-Requirements: Python 3.8+ from python.org — check "Add Python to PATH" during install.
-Method 1 — Git:
+```
+
+---
+
+### Windows
+
+First install Python 3.8+ from [python.org](https://python.org)
+During install, check **"Add Python to PATH"**
+
+**Option 1 — Git**
+
+```cmd
 git clone https://github.com/sarkashi/cypherx.git
 cd cypherx
 install.bat
-Method 2 — ZIP Download:
-Go to https://github.com/sarkashi/cypherx
-Click green Code button → Download ZIP
-Right-click ZIP → Extract All → open the folder
-Double-click install.bat — CMD opens automatically, installation starts
-After install:
+```
+
+**Option 2 — ZIP**
+
+1. Go to [github.com/sarkashi/cypherx](https://github.com/sarkashi/cypherx)
+2. Click the green **Code** button
+3. Click **Download ZIP**
+4. Right-click the ZIP → **Extract All**
+5. Open the extracted folder
+6. Double-click **install.bat** — CMD opens and installs automatically
+
+After installation:
+
+```cmd
 python cypherx.py --help
-Quick Start
+```
+
+---
+
+## Usage
+
+```bash
 cypherx --help
 cypherx --version
-Usage
-OSINT — Open Source Intelligence
-Search username across 70+ platforms (GitHub, Instagram, Twitter, TikTok, Steam, Reddit, LinkedIn, Telegram and 60+ more):
+```
+
+---
+
+### OSINT
+
+Search a username across 70+ platforms:
+
+```bash
 cypherx osint --username target --limit 30
 cypherx -os --username target --limit 30
-Analyze email (validity, MX records, Gravatar, disposable check):
+```
+
+Analyze an email address:
+
+```bash
 cypherx osint --email target@gmail.com
-Analyze phone number (country, carrier, type):
+```
+
+Analyze a phone number:
+
+```bash
 cypherx osint --phone +905001234567
-Full domain intelligence (WHOIS, DNS, subdomains, SSL, technology stack):
+```
+
+Full domain intelligence:
+
+```bash
 cypherx osint --domain example.com --limit 50
-IP address intelligence (geolocation, ISP, ASN, proxy/hosting detection):
+```
+
+IP address intelligence:
+
+```bash
 cypherx osint --ip 1.1.1.1
-Combine targets:
+```
+
+Multiple targets at once:
+
+```bash
 cypherx osint --username ali --email ali@gmail.com --domain example.com
+```
+
 Save as JSON:
+
+```bash
 cypherx osint --username ali --limit 20 --json
-RECON — Full Reconnaissance
+```
+
+---
+
+### Recon
+
+```bash
 cypherx recon --target example.com --limit 50
-cypherx -r --target example.com --json
-SCAN — Port Scanner
+cypherx recon --target example.com --json
+```
+
+---
+
+### Scan
+
+```bash
 cypherx scan 192.168.1.1
 cypherx scan 192.168.1.1 --ports 1-1024
 cypherx scan 192.168.1.1 --ports 1-65535
 cypherx scan 192.168.1.1 --ports 22,80,443,3306
-cypherx scan 192.168.1.1 --ports 1-65535 --threads 1000 --timeout 0.3
-cypherx -sc 192.168.1.1 --ports 1-1024 --json
-Shows: open ports, service names, banner info, risky ports marked with ⚠
-NETWORK — Host Discovery
+cypherx scan 192.168.1.1 --ports 1-65535 --threads 1000
+cypherx scan 192.168.1.1 --ports 1-1024 --json
+```
+
+---
+
+### Network
+
+```bash
 cypherx network 192.168.1.0/24
-cypherx -n 192.168.1.0/24 --limit 50 --json
-Shows: live hosts, MAC address, OS guess, open ports per host.
-MONITOR — Live Traffic Monitor
+cypherx network 192.168.1.0/24 --limit 50
+cypherx network 192.168.1.0/24 --json
+```
+
+---
+
+### Monitor
+
+Requires root on Linux:
+
+```bash
 sudo cypherx monitor --iface eth0
 sudo cypherx monitor --iface eth0 --duration 60
-sudo cypherx -m --iface eth0
-BRUTE — Bruteforce
+```
+
+---
+
+### Brute
+
+```bash
 cypherx brute ssh 192.168.1.1
 cypherx brute ssh 192.168.1.1 --passlist wordlist.txt --limit 1000
 cypherx brute ssh 192.168.1.1 --user root --port 2222
-cypherx -b ftp 192.168.1.1 --json
-Protocols: ssh ftp http smtp rdp mysql postgres telnet
-Warning: Use only on systems you own or have explicit written permission to test.
-VULN — Vulnerability Detection
+```
+
+Supported: `ssh` `ftp` `http` `smtp` `rdp` `mysql` `postgres` `telnet`
+
+---
+
+### Vuln
+
+```bash
 cypherx vuln --target 192.168.1.1
-cypherx -v --target 192.168.1.1 --json
-Detects: EternalBlue CVE-2017-0144, BlueKeep CVE-2019-0708, Log4Shell CVE-2021-44228, Heartbleed CVE-2014-0160, SMBGhost CVE-2020-0796, Spring4Shell CVE-2022-22965, Redis/MongoDB no-auth, Docker/Kubernetes API exposed, HTTP missing security headers — all with CVSS scores.
-AUDIT — System Security Audit
+cypherx vuln --target 192.168.1.1 --json
+```
+
+Detects: EternalBlue, BlueKeep, Log4Shell, Heartbleed, SMBGhost, Spring4Shell, Redis/MongoDB no-auth, Docker/Kubernetes exposed APIs, missing HTTP security headers — all with CVSS scores.
+
+---
+
+### Audit
+
+```bash
 cypherx audit --full
-cypherx -a --full --json
-FORENSICS — Log Analysis
+cypherx audit --full --json
+```
+
+---
+
+### Forensics
+
+```bash
 cypherx forensics --log /var/log/auth.log
 cypherx forensics --log /var/log/auth.log --limit 500 --json
-cypherx -f
-Extracts: failed logins, suspicious commands, IOCs (IPs, domains, hashes), base64 strings.
-HARDENING — System Hardening
+cypherx forensics
+```
+
+---
+
+### Hardening
+
+```bash
 cypherx hardening
-cypherx -h2 --json
-FILECHECK — File Safety Analysis
+cypherx hardening --json
+```
+
+---
+
+### Filecheck
+
+```bash
 cypherx filecheck suspicious.exe
-cypherx -fc suspicious.pdf --json
-Analyzes: file type, MD5/SHA1/SHA256 hashes, entropy, dangerous extensions, suspicious strings, PE header, risk score 0-100 (LOW / MEDIUM / HIGH).
-REPORT — Generate Reports
+cypherx filecheck suspicious.pdf --json
+```
+
+Analyzes file type, hashes (MD5/SHA1/SHA256), entropy, suspicious strings, PE header, risk score 0-100.
+
+---
+
+### Report
+
+```bash
 cypherx report --last --format html
-cypherx report --last --format txt
 cypherx report --last --format pdf
+cypherx report --last --format txt
 cypherx report --input results/scan.json --format html
-cypherx -rp --last --format html
-Reports saved to reports/ folder.
-UPDATE
+```
+
+Reports saved to `reports/`
+
+---
+
+### Update
+
+```bash
 cypherx update
-cypherx -u
+```
+
+Or manually:
+
+```bash
 git pull
-Short Flags Reference
--os   →  osint
--r    →  recon
--sc   →  scan
--n    →  network
--m    →  monitor
--b    →  brute
--v    →  vuln
--a    →  audit
--f    →  forensics
--h2   →  hardening
--fc   →  filecheck
--rp   →  report
--u    →  update
-Global Flags
-Flag
-Description
---limit N
-Maximum number of results
---json
-Save results as JSON file
---quiet
-Show summary only
---timeout N
-Connection timeout in seconds
---threads N
-Number of concurrent threads
---proxy URL
-Use HTTP proxy
---output DIR
-Custom output directory
-Output Structure
-cypherx/
-├── results/       ← JSON scan results
-├── reports/       ← HTML / PDF / TXT reports
-├── logs/          ← Internal logs
-└── wordlists/     ← Custom wordlists for bruteforce
+```
 
-Requirements
-Python 3.8+
-All dependencies installed automatically by install.sh / install.bat
-Packages: click rich requests dnspython python-whois paramiko scapy
-Legal Disclaimer
+---
 
-CypherX is intended for authorized security testing and educational purposes only.
-Only use on systems you own or have explicit written permission to test
-The author is NOT responsible for any misuse or damage
-Unauthorized use is illegal in most jurisdictions
-By using CypherX, you accept full legal responsibility.
-Contributing
-Contributions are welcome. See CONTRIBUTING.md for guidelines.
-License
-MIT License — Copyright (c) 2026 CypherX — See LICENSE
-
-
-CypherX v1.0.0
-github.com/sarkashi/cypherx 
+## Short Flags
 
 ```
+-os    osint
+-r     recon
+-sc    scan
+-n     network
+-m     monitor
+-b     brute
+-v     vuln
+-a     audit
+-f     forensics
+-h2    hardening
+-fc    filecheck
+-rp    report
+-u     update
+```
+
+---
+
+## Global Flags
+
+| Flag | Description |
+|------|-------------|
+| --limit N | Maximum number of results |
+| --json | Save output as JSON |
+| --quiet | Show summary only |
+| --timeout N | Connection timeout in seconds |
+| --threads N | Number of threads |
+| --proxy URL | Use HTTP proxy |
+
+---
+
+## Output
+
+```
+cypherx/
+├── results/      JSON scan results
+├── reports/      HTML / PDF / TXT reports
+├── logs/         Internal logs
+└── wordlists/    Custom wordlists
+```
+
+---
+
+## Requirements
+
+- Python 3.8 or higher
+- Dependencies installed automatically by `install.sh` or `install.bat`
+
+---
+
+## Legal
+
+CypherX is for authorized security testing and educational use only.
+
+Only use on systems you own or have explicit written permission to test.
+The author is not responsible for any misuse or damage.
+Unauthorized use may be illegal in your jurisdiction.
+
+By using CypherX, you accept full responsibility.
+
+---
+
+## License
+
+MIT License — Copyright (c) 2026 CypherX
+
+---
+
+<p align="center">
+  CypherX v1.0.0 — github.com/sarkashi/cypherx
+</p>
