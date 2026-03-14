@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="logo.jpg" width="220"/>
+  <img src="logo.jpg" width="300"/>
 </p>
 
 <h1 align="center">CypherX</h1>
